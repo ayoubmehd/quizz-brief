@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Quizz</title>
+  </head>
+  <body>
+    <main class="flex items-center flex-col h-screen p-6" id="main">
+      <h1 class="text-5xl mb-5">Leader Board</h1>
+      <div class="flex items-start justify-center h-full">
+        <table id="leader-board" class="table-fixed">
+            <thead>
+                <tr class="border-b-2">
+                    <th class="px-8">Name</th>
+                    <th class="px-3">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                        <!-- <tr class="text-center border-b">
+                            <td>
+                                Ayoub                    
+                            </td>
+                            <td>
+                                50
+                            </td>
+                        </tr> -->
+            </tbody>
+        </table>
+    </main>
+
+    <script type="module" src="./js/leader-board.js"></script>
+  </body>
+</html>

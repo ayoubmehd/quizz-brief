@@ -1,45 +1,98 @@
-import view, { correctAnswer, wrongAnswer } from "./view.js";
-import { getCurrent, next, isLast, incrementScore, getScore, calcPercentage, currentQ, progress, isCorrect } from "./logic.js";
+import view, { correctAnswer, wrongAnswer, gameBoard, animateTimeout, pauseAnimation, removeAnimation } from "./view.js";
+import {
+    getCurrent, setQuizz, next, isLast, incrementScore, getScore, calcPercentage,
+    currentQ, progress, isCorrect, addScore, saveScoreLocal
+} from "./logic.js";
 // import { isCorrect } from "./questionController.js"
+import quizze from "./quizz.js";
+import { showAlert, createAlert, hideAlert } from "./alert.js"
 
-startQuizz()
+init()
+
+async function init() {
+    const quizz = await quizze;
+    setQuizz(quizz)
+    createAlert({
+        saveScore,
+        tryAgain
+    })
+    startQuizz()
+}
+
+function saveScore({ name }) {
+    addScore({
+        name,
+        score: getScore()
+    });
+    saveScoreLocal()
+    home()
+    hideAlert()
+}
+
+function tryAgain() {
+    home()
+    hideAlert()
+}
+
+function home() {
+    window.location.replace("index.html")
+}
+
+function nextQuestion() {
+    next()
+    startQuizz()
+    if (isLast()) {
+        showAlert(getScore(), getScore())
+    }
+}
+
+function setQuestionTimeOut(quizzTime) {
+
+    animateTimeout(quizzTime);
+
+    return setTimeout(() => {
+        nextQuestion()
+    }, quizzTime)
+}
+
 
 function startQuizz() {
+    // const timeout = document.querySelector("#timeout");
 
     const currentQuestion = currentQ();
 
     if (!currentQuestion) return;
 
+    const timeOut = setQuestionTimeOut(9000);
 
+    gameBoard(getScore(), progress(), calcPercentage())
     view(
         {
             questionText: currentQuestion.question,
             options: currentQuestion.possibleAnswers,
-            score: getScore(),
-            progress: progress(),
-            progressPercent: calcPercentage()
         },
         {
             answer: ({ target }) => {
+
+                pauseAnimation();
+                clearTimeout(timeOut);
 
                 const index = parseInt(target.dataset.index);
 
                 if (isCorrect(index)) {
                     correctAnswer(target)
                     incrementScore()
+                    gameBoard(getScore(), progress(), calcPercentage())
                 } else {
                     wrongAnswer(target)
                 }
                 if (!currentQuestion) return;
 
                 setTimeout(() => {
-                    next()
-                    startQuizz()
-                    if (isLast()) {
-                        console.log("Quizz is done")
-                    }
+                    removeAnimation()
+                    nextQuestion()
                 }, 2000)
-            }
+            },
         }
     );
 }

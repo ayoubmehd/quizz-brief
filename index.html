@@ -14,7 +14,8 @@
     <main class="flex items-center flex-col h-screen p-6" id="main">
       <h1 class="text-5xl">Quizz</h1>
       <div class="flex justify-center items-center flex-col h-full">
-        <button
+        <a
+          href="quizz.html"
           class="
             w-28
             h-10
@@ -29,8 +30,9 @@
           "
         >
           Start
-        </button>
-        <button
+        </a>
+        <a
+          href="./leader-board.html"
           class="
             w-28
             h-10
@@ -41,9 +43,58 @@
             hover:bg-purple-400 hover:text-white
           "
         >
-          High Score
-        </button>
+          Leader Board
+        </a>
       </div>
     </main>
+
+    <!-- <div
+      class="w-full h-full fixed left-0 top-0 flex justify-center items-center"
+    >
+      <div class="bg-gray-300 w-72 p-8">
+        <div class="mb-4 flex justify-between">
+          <div>Score : 50</div>
+          <div>Hight Score : 100</div>
+        </div>
+        <div class="mb-4">
+          <label class="block mb-2" for="name">Your name</label>
+          <input
+            class="p-2 block w-full"
+            id="name"
+            type="text"
+            placeholder="Name"
+          />
+        </div>
+        <button
+          class="
+            h-10
+            flex
+            justify-center
+            items-center
+            bg-purple-400
+            text-white
+            border
+            hover:bg-purple-500
+            mb-4
+            w-full
+          "
+        >
+          Save
+        </button>
+        <button
+          class="
+            h-10
+            flex
+            justify-center
+            items-center
+            border border-purple-400
+            hover:bg-purple-400 hover:text-white
+            w-full
+          "
+        >
+          Try Again
+        </button>
+      </div>
+    </div> -->
   </body>
 </html>
