@@ -2,7 +2,7 @@ import { newEl, classAttr } from "./helpers.js"
 
 let alertRef = null;
 let scoreDOM = null;
-let hightScoreDOM = null;
+let statusDOM = null;
 
 export const createAlert = (eventHandlers) => {
     const saveBtn = newEl("button", [
@@ -29,7 +29,7 @@ export const createAlert = (eventHandlers) => {
 
 
     scoreDOM = newEl("div", [document.createTextNode(`Score : `)]);
-    hightScoreDOM = newEl("div", [document.createTextNode(`Hight Score : `)]);
+    statusDOM = newEl("div", [document.createTextNode(`Hight Score : `)]);
 
     saveBtn.addEventListener('click', () => {
         eventHandlers.saveScore({ name: input.value });
@@ -40,7 +40,7 @@ export const createAlert = (eventHandlers) => {
         newEl("div", [
             newEl("div", [
                 scoreDOM, // Score Div
-                hightScoreDOM, // Hight Scire div
+                statusDOM, // Hight Scire div
             ], [classAttr("mb-4 flex justify-between")]),
             newEl("div", [
                 newEl("label", [
@@ -63,9 +63,9 @@ export const createAlert = (eventHandlers) => {
 
 
 
-export const showAlert = (score, hightScore) => {
+export const showAlert = (score, status) => {
     scoreDOM.textContent = score;
-    hightScoreDOM.textContent = hightScore;
+    statusDOM.textContent = status;
     document.body.appendChild(
         alertRef
     )

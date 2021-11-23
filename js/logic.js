@@ -1,3 +1,5 @@
+// import { perfectScore } from "./quizz.js"
+
 let quizze = [];
 
 
@@ -72,6 +74,26 @@ export const addScore = (state) => {
 
 export const saveScoreLocal = () => {
     localStorage.setItem("scores", JSON.stringify(scores))
+}
+
+const perfectScore = () => {
+    return quizze.reduce((sum, item) => {
+        return sum + item.score;
+    }, 0);
+}
+
+const avgScore = () => {
+
+    console.log("perfect Score", perfectScore())
+    return perfectScore() / 2
+}
+
+export const isSuceeded = () => {
+    return getScore() >= avgScore()
+}
+
+export const isFailed = () => {
+    return !isSuceeded()
 }
 
 export {

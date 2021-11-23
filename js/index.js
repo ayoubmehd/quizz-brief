@@ -1,7 +1,7 @@
 import view, { correctAnswer, wrongAnswer, gameBoard, animateTimeout, pauseAnimation, removeAnimation } from "./view.js";
 import {
     getCurrent, setQuizz, next, isLast, incrementScore, getScore, calcPercentage,
-    currentQ, progress, isCorrect, addScore, saveScoreLocal
+    currentQ, progress, isCorrect, addScore, saveScoreLocal, isFailed, isSuceeded
 } from "./logic.js";
 // import { isCorrect } from "./questionController.js"
 import quizze from "./quizz.js";
@@ -42,7 +42,17 @@ function nextQuestion() {
     next()
     startQuizz()
     if (isLast()) {
-        showAlert(getScore(), getScore())
+
+        if (isFailed()) {
+            console.log("you failde")
+            showAlert(getScore(), "You Failed")
+        }
+
+        if (isSuceeded()) {
+            showAlert(getScore(), "You Suceed")
+            console.log("you succed")
+        }
+
     }
 }
 

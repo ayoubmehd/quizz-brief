@@ -33,7 +33,7 @@ export const newElFunc = (name, child = [], attr = []) => {
 }
 
 const fetchQuizzes = async () => {
-    const res = await fetch('https://opentdb.com/api.php?amount=20');
+    const res = await fetch('https://opentdb.com/api.php?amount=10&category=18');
     const data = await res.json();
 
     return data.results;
@@ -74,6 +74,7 @@ const fromatQuizzes = async (size) => {
 
         quizz.push(formatedData);
 
+        // Delete question from array
         data.splice(rand, 1);
         // console.log(rand, data[rand]);
     }
@@ -82,6 +83,13 @@ const fromatQuizzes = async (size) => {
 }
 
 export const faker = (size = 6) => {
+
+    // const data = [];
+
+    // for (let i = 0; i < size; i++) {
+    //     data.push({});
+    // }
+
     return fromatQuizzes(size)
 }
 
